@@ -1,26 +1,36 @@
-const savana = "L   Z   L  Z   L"
+const savana = "   Z   "
 const zebra = 'Z'
 const lion = 'L'
-let currentPlace = 0
-let checkingPlace = currentPlace
 const lengthOfSavana = savana.length
-let lionPosition = 0
-let zebraPosition = 0
-let numZebra = 0
-let numLion = 0
-let currentLetter
-for (;currentPlace <= lengthOfSavana ; currentPlace ++ ) {
-    currentLetter = savana[currentPlace]
-    if (currentLetter === lion){
-        lionPosition = currentPlace
-        numLion ++
-        console.log("the position of" , numLion , "lion is" , lionPosition );
-        
+let distanceBetweenThem = 0 
+let minDistanceBetweenThem = lengthOfSavana
+let lionLastLoc = -1
+let zebraLastLoc = -1 
 
+for (let currentPlace = 0 ; currentPlace <= lengthOfSavana ; currentPlace ++) {
+    let currentLetter = savana[currentPlace]
+    if (currentLetter === lion) {
+        
+        if (zebraLastLoc !== -1) {
+            distanceBetweenThem = currentPlace - zebraLastLoc -1
+            if (distanceBetweenThem < minDistanceBetweenThem) {
+                minDistanceBetweenThem = distanceBetweenThem
+            }
+            
+        }lionLastLoc = currentPlace
     }
-    if (currentLetter === zebra){
-        zebraPosition = currentPlace
-        numZebra ++
-        console.log("the postion of" , numZebra , "zebra is" , zebraPosition );
-    } 
+    if (currentLetter === zebra) {
+        zebraLastLoc = currentPlace
+        if (lionLastLoc !== -1) {
+            distanceBetweenThem = currentPlace - lionLastLoc -1
+            if (distanceBetweenThem < minDistanceBetweenThem) {
+                minDistanceBetweenThem = distanceBetweenThem
+            }
+            
+        }zebraLastLoc = currentPlace
+    }
+} 
+if (minDistanceBetweenThem === lengthOfSavana){
+    minDistanceBetweenThem = -1
 }
+console.log("Minimum spaces between lion and zebra = " , minDistanceBetweenThem );
