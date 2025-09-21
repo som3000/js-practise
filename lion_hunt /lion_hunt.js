@@ -1,28 +1,26 @@
-const savana = "L         Z"
+const savana = "L   Z   L  Z   L"
 const zebra = 'Z'
 const lion = 'L'
 let currentPlace = 0
 let checkingPlace = currentPlace
 const lengthOfSavana = savana.length
-let distanceBetweenThem = 0 
-let zebraFound = false
+let lionPosition = 0
+let zebraPosition = 0
+let numZebra = 0
+let numLion = 0
+let currentLetter
+for (;currentPlace <= lengthOfSavana ; currentPlace ++ ) {
+    currentLetter = savana[currentPlace]
+    if (currentLetter === lion){
+        lionPosition = currentPlace
+        numLion ++
+        console.log("the position of" , numLion , "lion is" , lionPosition );
+        
 
-while (currentPlace <= lengthOfSavana) {
-   
-    if (savana[currentPlace] === lion) {
-        checkingPlace ++
-        zebraFound = false
-       
-        while (!zebraFound) {
-            if (savana[checkingPlace] === zebra){
-                distanceBetweenThem = checkingPlace - currentPlace
-                break
-            } else {
-                checkingPlace ++
-
-            }
-        }
     }
-    currentPlace ++
-} 
-console.log('spaces between Lion and Zebra =' , distanceBetweenThem - 1);
+    if (currentLetter === zebra){
+        zebraPosition = currentPlace
+        numZebra ++
+        console.log("the postion of" , numZebra , "zebra is" , zebraPosition );
+    } 
+}
